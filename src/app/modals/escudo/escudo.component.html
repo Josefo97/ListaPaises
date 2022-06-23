@@ -1,0 +1,16 @@
+<div class="row d-flex justify-space-between align-items-center" mat-dialog-title>
+    <h2 class="col mb-0 text-center pr-0">
+       <b> Escudo </b>
+    </h2>
+    <div class="col-auto pl-0">
+        <button mat-mini-fab (click)="dialogRef.close(false)">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+
+<mat-dialog-content>
+    <div>
+        <img mat-card-image [src]="data" alt="..." class="px-3 altoImg"/>
+    </div>
+</mat-dialog-content>

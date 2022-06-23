@@ -1,0 +1,79 @@
+
+<div class="content">
+  <div class="row mx-0">
+
+    <div class="col-auto">
+      <mat-form-field>
+        <mat-label>Buscar Por:</mat-label>
+        <mat-select [(ngModel)]="buscarPor">
+          <mat-option *ngFor="let item of catBusqueda" [value]="item.id">{{ item.valor }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-auto" *ngIf="buscarPor == 1">
+      <mat-form-field>
+        <mat-label>Buscar Region:</mat-label>
+        <mat-select [(ngModel)]="buscarRegion" (selectionChange)="busquedaPorRegion($event.value)">
+          <mat-option *ngFor="let item of catRegiones" [value]="item.id">{{ item.valor }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-auto" *ngIf="buscarPor == 2">
+      <mat-form-field appearance="outline">
+        <mat-label>Buscar País</mat-label>
+        <input
+          matInput
+          placeholder="Search..."
+          (keyup)="search(terminoBusqueda)"
+          [(ngModel)]="terminoBusqueda" />
+          <button *ngIf="terminoBusqueda" matSuffix mat-icon-button aria-label="Clear" (click)="terminoBusqueda='' ">
+            <mat-icon>close</mat-icon>
+          </button>
+          <button *ngIf="!terminoBusqueda" matSuffix mat-icon-button aria-label="Clear" (click)="obtenerPaises() ">
+            <mat-icon>search</mat-icon>
+          </button>
+      </mat-form-field>
+    </div>
+
+    <div class="col-auto" *ngIf="buscarPor == 3">
+      <mat-form-field appearance="outline">
+        <mat-label>Buscar Capital</mat-label>
+        <input
+          matInput
+          placeholder="Search..."
+          (keyup)="busuquedaPorCapital(buscarCapital)"
+          [(ngModel)]="buscarCapital" />
+          <button *ngIf="buscarCapital" matSuffix mat-icon-button aria-label="Clear" (click)=" buscarCapital='' ">
+            <mat-icon>close</mat-icon>
+          </button>
+          <button *ngIf="!terminoBusqueda" matSuffix mat-icon-button aria-label="Clear" (click)="obtenerPaises() ">
+            <mat-icon>search</mat-icon>
+          </button>
+
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4" *ngFor="let pais of listaPaises">
+        <mat-card class="my-3 detallesCarta" >
+          <mat-card-header class="justify-content-center">
+              <img mat-card-image [src]="pais.flags.png" alt="..." class="px-3 altoImg"/>
+          </mat-card-header>
+
+          <mat-card-content>
+            <h1 class="text-center">{{pais.name.official}} ({{pais.name.common}})</h1>
+            <h3 class="text-left">Capital: {{ pais?.capital ? pais?.capital[0] : 'Sin capital conocida'  }} </h3>
+            <h3 class="text-left">Población: {{ pais.population }} millones</h3>
+            <h3 class="text-left">Área: {{ pais.area }} m2</h3>
+          </mat-card-content>
+
+          <mat-card-actions class="d-flex justify-content-end">
+            <button mat-raised-button color="primary" (click)="verPais(pais.ccn3)">Ver más información</button>
+          </mat-card-actions>
+        </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+:host ::ng-deep .mat-card-header-text {
+    margin: 0px;   
+}
+
+.altoImg {
+    height: 201px;
+}
+
+.carta{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.detallesCarta{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}

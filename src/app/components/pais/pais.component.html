@@ -1,0 +1,38 @@
+<div>
+    <button type="button" class="mx-2 my-2" mat-raised-button color="accent" routerLink="/paises">Regresar</button>
+</div>
+
+<div class="row carta">
+    <div class="col-6">
+        <mat-card class="my-3 detallesCarta mat-elevation-z1" >
+          <mat-card-header class="justify-content-center">
+              <img mat-card-image [src]="pais?.flags.png" alt="..." class="px-3 altoImg"/>
+          </mat-card-header>
+
+          <mat-card-content>
+            <h1 class="text-center">{{pais?.name.official}} ({{pais?.name.common}})</h1>
+            <h3 class="text-left">Capital: {{ pais?.capital ? pais?.capital[0] : 'Sin capital conocida'  }} </h3>
+            <h3 class="text-left">Población: {{ pais?.population }} millones</h3>
+            <h3 class="text-left">Área: {{ pais?.area }} m2</h3>
+            <h3 class="text-left">Moneda: {{ pais?.currencies | json }} </h3>
+            <h3 class="text-left">Región: {{ pais?.region }}</h3>
+            <h3 class="text-left">Subregión: {{ pais?.subregion }}</h3>
+            <h3 class="text-left">Idioma(s):</h3>
+                <ul class="mr-5" *ngFor="let idioma of listaIdiomas">
+                    <li>{{idioma}}</li>
+                </ul>
+
+            <div class="row col-12">
+                <button type="button" class="mx-2 my-2" mat-raised-button color="primary" (click)="verEscudo(pais?.coatOfArms.png)">Ver escudo</button>
+                <button type="button" class="mx-2 my-2" mat-raised-button color="primary" (click)="mapa.click()">Ver ubicación en Google Maps</button>
+                <a [href]="pais?.maps.googleMaps" target="_blank" #mapa class="d-none"></a>
+                <button type="button" class="mx-2 my-2" mat-raised-button color="primary" (click)="streetMap.click()">Ver ubicación en Open Street Maps</button>
+                <a [href]="pais?.maps.openStreetMaps" target="_blank" #streetMap class="d-none"></a>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions>
+          </mat-card-actions>
+        </mat-card>
+    </div>
+  </div>
